@@ -30,20 +30,24 @@
   <!-- debug template -->
   <script type="text/javascript" src="../../generators/cake.js"></script>
   <script type="text/javascript" src="../../generators/cake/colour.js"></script>
-  <script type="text/javascript" src="../../generators/cake/library.js"></script>
+  <script type="text/javascript" src="../../generators/cake/stdio.js"></script>
+  <script type="text/javascript" src="../../generators/cake/stdlib.js"></script>
+  <script type="text/javascript" src="../../generators/cake/math.js"></script>
+  <script type="text/javascript" src="../../generators/cake/string.js"></script>
   <script type="text/javascript" src="../../generators/cake/lists.js"></script>
   <script type="text/javascript" src="../../generators/cake/logic.js"></script>
   <script type="text/javascript" src="../../generators/cake/loops.js"></script>
-  <script type="text/javascript" src="../../generators/cake/math.js"></script>
   <script type="text/javascript" src="../../generators/cake/procedures.js"></script>
   <script type="text/javascript" src="../../generators/cake/text.js"></script>
   <script type="text/javascript" src="../../generators/cake/variables.js"></script>
   <script type="text/javascript" src="../../blocks/colour.js"></script>
-  <script type="text/javascript" src="../../blocks/library.js"></script>
+  <script type="text/javascript" src="../../blocks/stdio.js"></script>
+  <script type="text/javascript" src="../../blocks/stdlib.js"></script>
+  <script type="text/javascript" src="../../blocks/math.js"></script>
+  <script type="text/javascript" src="../../blocks/string.js"></script>
   <script type="text/javascript" src="../../blocks/lists.js"></script>
   <script type="text/javascript" src="../../blocks/logic.js"></script>
   <script type="text/javascript" src="../../blocks/loops.js"></script>
-  <script type="text/javascript" src="../../blocks/math.js"></script>
   <script type="text/javascript" src="../../blocks/procedures.js"></script>
   <script type="text/javascript" src="../../blocks/text.js"></script>
   <script type="text/javascript" src="../../blocks/variables.js"></script>
@@ -131,12 +135,10 @@
  */
 {template .toolbox}
   <xml id="toolbox" style="display: none">
-    <category name="{msg meaning="Apps.catVariables" desc="IBID"}Variables{/msg}" custom="VARIABLE">
-      <block type="variable_array"></block>
-      <block type="variable_integer"></block>
-      <block type="variable_realnumber"></block>
-      <block type="variable_character"></block>
-      <block type="variable_constant"></block>
+    <category name="{msg meaning="Apps.catVariables" desc="IBID"}Variables{/msg}">
+      <block type="variables_declare"></block>
+      <block type="variables_get"></block>
+      <block type="variables_set"></block>      
     </category>
     <category name="{msg meaning="Apps.catLoops" desc="IBID"}Loops{/msg}">
       <block type="loop_while"></block>
@@ -152,14 +154,102 @@
     </category>
     <category name="{msg meaning="Apps.catLibrary" desc="IBID"}Library{/msg}">
       <category name="Stdio">
-        <block type="library_func_paren"></block>
-        <block type="library_stdio_printf"></block>
-        <block type="library_stdio_scanf"></block>
+        <category name="FILE I/O">
+          <block type="library_stdio_fopen">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_fclose">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_fprintf">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_fscanf">
+            <value name="TEXT">
+            <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_fread">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_fwrite">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_fflush">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          </category>
+          <category name="I/O">
+          <block type="library_stdio_printf">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_scanf">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_getchar">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_putchar">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_gets">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+          <block type="library_stdio_puts">
+            <value name="TEXT">
+              <block type="library_func_paren"></block>
+            </value>
+          </block>
+        </category>
       </category>
       <category name="Stdlib">
-        <block type="library_func_paren"></block>
-        <block type="library_stdlib_rand"></block>
-        <block type="library_stdlib_exit"></block>
+        <block type="library_stdlib_rand">
+          <value name="TEXT">
+            <block type="library_func_paren"></block>
+          </value>
+        </block>
+        <block type="library_stdlib_srand">
+          <value name="TEXT">
+            <block type="library_func_paren"></block>
+          </value>
+        </block>
+        <block type="library_stdlib_malloc">
+          <value name="TEXT">
+            <block type="library_func_paren"></block>
+          </value>
+        </block>
+        <block type="library_stdlib_free">
+          <value name="TEXT">
+            <block type="library_func_paren"></block>
+          </value>
+        </block>
+        <block type="library_stdlib_exit">
+          <value name="TEXT">
+            <block type="library_func_paren"></block>
+          </value>
+        </block>
       </category>
       <category name="{msg meaning="Apps.catMath" desc="IBID"}Math{/msg}">
         <block type="library_func_paren"></block>
