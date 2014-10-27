@@ -160,7 +160,7 @@
               <li class="list-group-item"><code>int func2( )</code>
               </li>
             </ul>
-            <div class="btn-group btn-group-sm ng-scope">
+            <div class="btn-group btn-group-sm">
               <button type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus"></span>
               </button>
@@ -171,74 +171,81 @@
           </div>
         </div>
       </div>
-    </div>
-    <xml id="toolbox">
-      <category name="Variables">
-        <block type="variables_declare"></block>
-        <block type="variables_get"></block>
-        <block type="variables_set"></block>
-        <block type="variables_pointer_declare"></block>
-        <block type="variables_array_declare"></block>
-        <block type="variables_return"></block>
-      </category>
-      <category name="Arithmetics">
-        <block type="math_number"></block>
-        <block type="math_arithmetic"></block>
-        <block type="math_modulo"></block>
-      </category>
-      <category name="Loops">
-        <block type="controls_whileUntil"></block>
-        <block type="controls_for"></block>
-      </category>
-      <category name="Logic">
-        <block type="controls_if"></block>
-        <block type="logic_compare"></block>
-        <block type="logic_operation"></block>
-        <block type="logic_negate"></block>
-        <block type="logic_boolean"></block>
-        <block type="logic_null"></block>
-        <block type="logic_ternary"></block>
-      </category>
-      <category name="Functions" custom="PROCEDURE">
-      </category>
-      <category name="Library">
-        <category name="Stdio">
-          <category name="FILE I/O">
-            <block type="library_stdio_fopen">
-              <value name="TEXT">
-                <block type="library_func_paren"></block>
-              </value>
-            </block>
-            <block type="library_stdio_fclose">
-              <value name="TEXT">
-                <block type="library_func_paren"></block>
-              </value>
-            </block>
-            <block type="library_stdio_fprintf">
-              <value name="TEXT">
-                <block type="library_func_paren"></block>
-              </value>
-            </block>
-            <block type="library_stdio_fscanf">
-              <value name="TEXT">
-              <block type="library_func_paren"></block>
-              </value>
-            </block>
-            <block type="library_stdio_fread">
-              <value name="TEXT">
-                <block type="library_func_paren"></block>
-              </value>
-            </block>
-            <block type="library_stdio_fwrite">
-              <value name="TEXT">
-                <block type="library_func_paren"></block>
-              </value>
-            </block>
-            <block type="library_stdio_fflush">
-              <value name="TEXT">
-                <block type="library_func_paren"></block>
-              </value>
-            </block>
+      <div class="col-xs-7">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Workspace</h3>
+          </div>
+          <div id="blocklyDiv" class="panel-body"></div>
+        </div>
+      </div>
+      <xml id="toolbox">
+        <category name="Variables">
+          <block type="variables_declare"></block>
+          <block type="variables_get"></block>
+          <block type="variables_set"></block>
+          <block type="variables_pointer_declare"></block>
+          <block type="variables_array_declare"></block>
+          <block type="variables_return"></block>
+        </category>
+        <category name="Arithmetics">
+          <block type="math_number"></block>
+          <block type="math_arithmetic"></block>
+          <block type="math_modulo"></block>
+        </category>
+        <category name="Loops">
+          <block type="controls_whileUntil"></block>
+          <block type="controls_for"></block>
+        </category>
+        <category name="Logic">
+          <block type="controls_if"></block>
+          <block type="logic_compare"></block>
+          <block type="logic_operation"></block>
+          <block type="logic_negate"></block>
+          <block type="logic_boolean"></block>
+          <block type="logic_null"></block>
+          <block type="logic_ternary"></block>
+        </category>
+        <category name="Functions" custom="PROCEDURE">
+        </category>
+        <category name="Library">
+          <category name="Stdio">
+            <category name="FILE I/O">
+              <block type="library_stdio_fopen">
+                <value name="TEXT">
+                  <block type="library_func_paren"></block>
+                </value>
+              </block>
+              <block type="library_stdio_fclose">
+                <value name="TEXT">
+                  <block type="library_func_paren"></block>
+                </value>
+              </block>
+              <block type="library_stdio_fprintf">
+                <value name="TEXT">
+                  <block type="library_func_paren"></block>
+                </value>
+              </block>
+              <block type="library_stdio_fscanf">
+                <value name="TEXT">
+                  <block type="library_func_paren"></block>
+                </value>
+              </block>
+              <block type="library_stdio_fread">
+                <value name="TEXT">
+                  <block type="library_func_paren"></block>
+                </value>
+              </block>
+              <block type="library_stdio_fwrite">
+                <value name="TEXT">
+                  <block type="library_func_paren"></block>
+                </value>
+              </block>
+              <block type="library_stdio_fflush">
+                <value name="TEXT">
+                  <block type="library_func_paren"></block>
+                </value>
+              </block>
             </category>
             <category name="I/O">
               <block type="library_stdio_printf">
@@ -325,8 +332,6 @@
     </div>
   </div>
   <footer id="footer" role="contentinfo">
-    <div>
-    </div>
   </footer>
   <script type="text/javascript" src="blockly/blockly_uncompressed.js"></script>
   <script type="text/javascript" src="blockly/msg/js/en.js"></script>
