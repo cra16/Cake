@@ -2,6 +2,7 @@
 
 angular.module('ide').controller('IdeController', ['$scope', '$document',
 	function($scope, $document) {
+		// Inject workspace after page is loaded.
 		$document.ready(function() {
 			Blockly.inject(document.getElementById('blocklyDiv'),
 				{
@@ -9,7 +10,19 @@ angular.module('ide').controller('IdeController', ['$scope', '$document',
 					toolbox: document.getElementById('toolbox')
 				}
 			);
-			//Blockly.addChangeListener(renderContent);
+			Blockly.addChangeListener(renderContent);
 		});
+
+		// Render contents with pretty print.
+		var renderContent = function () {
+			var content = document.getElementById('code');
+			var code = Blockly.cake.workspaceToCode();
+			content.textContent = code;
+			if (typeof prettyPrintOne === 'function') {
+				code = content.innerHTML;
+				code = prettyPrintOne(code, 'c');
+				content.innerHTML = code;
+			}
+		}
 	}
 ]);
