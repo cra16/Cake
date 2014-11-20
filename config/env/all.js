@@ -37,7 +37,11 @@ module.exports = {
 			'public/application.js',
 			'public/modules/*/*.js',
 			'public/modules/*/*[!tests]*/*.js',
-			'public/modules/ide/blockly/blockly_uncompressed.js'
+			'public/modules/ide/blockly/blockly_uncompressed.js',
+			'public/modules/ide/blockly/msg/js/en.js',
+			'public/modules/ide/blockly/generators/cake.js',
+			'public/modules/ide/blockly/generators/cake/*.js',
+			'public/modules/ide/blockly/blocks/*.js'
 		],
 		tests: [
 			'public/lib/angular-mocks/angular-mocks.js',
