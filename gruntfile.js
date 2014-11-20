@@ -51,7 +51,8 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 			all: {
-				src: watchFiles.clientJS.concat(watchFiles.serverJS),
+				//src: watchFiles.clientJS.concat(watchFiles.serverJS),
+				src: watchFiles.serverJS,
 				options: {
 					jshintrc: true
 				}
@@ -167,8 +168,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('secure', ['env:secure', 'lint', 'concurrent:default']);
 
 	// Lint task(s).
-	//grunt.registerTask('lint', ['jshint', 'csslint']);
-	grunt.registerTask('lint', ['csslint']);
+	grunt.registerTask('lint', ['jshint', 'csslint']);
+	//grunt.registerTask('lint', ['csslint']);
 
 	// Build task(s).
 	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
