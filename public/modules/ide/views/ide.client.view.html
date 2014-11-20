@@ -1,3 +1,200 @@
 <section data-ng-controller="IdeController">
-	This is the Ide view
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="collapse navbar-collapse">
+				<div class="btn-toolbar" role="toolbar">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default navbar-btn" disabled="disabled">
+							<span class="glyphicon glyphicon-file"></span> New File
+						</button>
+						<button type="button" class="btn btn-default navbar-btn" disabled="disabled">
+							<span class="glyphicon glyphicon-folder-open"></span> Open
+						</button>
+						<button type="button" class="btn btn-default navbar-btn" disabled="disabled">
+							<span class="glyphicon glyphicon-floppy-disk"></span> Save
+						</button>
+						<button type="button" class="btn btn-default navbar-btn" onclick="downloadCode()">
+							<span class="glyphicon glyphicon-download-alt"></span> Download
+						</button>
+						<button type="button" class="btn btn-default navbar-btn" onclick="discard()" data-toggle="button">
+							<span class="glyphicon glyphicon-trash"></span> Trash
+						</button>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default navbar-btn" disabled="disabled">
+							<span class="glyphicon glyphicon-play"></span> Run
+						</button>
+						<button type="button" class="btn btn-default navbar-btn" disabled="disabled">
+							<span class="glyphicon glyphicon-wrench"></span> Setting
+						</button>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default navbar-btn" disabled="disabled">
+							<span class="glyphicon glyphicon-fullscreen"></span> Fullscreen
+						</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div id="main-wrapper" class="row">
+			<div class="col-xs-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Workspace</h3>
+					</div>
+					<div id="blocklyDiv" class="panel-body"></div>
+				</div>
+			</div>
+			<xml id="toolbox">
+				<category name="Variables">
+					<block type="variables_declare"></block>
+					<block type="variables_get"></block>
+					<block type="variables_set"></block>
+					<block type="variables_pointer_declare"></block>
+					<block type="variables_array_declare"></block>
+					<block type="variables_return"></block>
+				</category>
+				<category name="Arithmetics">
+					<block type="math_number"></block>
+					<block type="math_arithmetic"></block>
+					<block type="math_modulo"></block>
+				</category>
+				<category name="Loops">
+					<block type="controls_whileUntil"></block>
+					<block type="controls_for"></block>
+				</category>
+				<category name="Logic">
+					<block type="controls_if"></block>
+					<block type="logic_compare"></block>
+					<block type="logic_operation"></block>
+					<block type="logic_negate"></block>
+					<block type="logic_boolean"></block>
+					<block type="logic_null"></block>
+					<block type="logic_ternary"></block>
+				</category>
+				<category name="Functions" custom="PROCEDURE">
+				</category>
+				<category name="Library">
+					<category name="Stdio">
+						<category name="FILE I/O">
+							<block type="library_stdio_fopen">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_fclose">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_fprintf">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_fscanf">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_fread">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_fwrite">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_fflush">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+						</category>
+						<category name="I/O">
+							<block type="library_stdio_printf">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_scanf">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_getchar">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_putchar">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_gets">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+							<block type="library_stdio_puts">
+								<value name="TEXT">
+									<block type="library_func_paren"></block>
+								</value>
+							</block>
+						</category>
+					</category>
+					<category name="Stdlib">
+						<block type="library_stdlib_rand">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_stdlib_srand">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_stdlib_malloc">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_stdlib_free">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_stdlib_exit">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+					</category>
+					<category name="Math">
+						<block type="library_func_paren"></block>
+						<block type="library_math_sin"></block>
+						<block type="library_math_cos"></block>
+						<block type="library_math_tan"></block>
+					</category>
+				</category>
+			</xml>
+			<div class="col-xs-4">
+				<div id="code-wrapper" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Code</h3>
+					</div>
+					<pre id="code" class="panel-body pre-scrollable"></pre>
+				</div>
+				<div id="terminal-wrapper" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Console</h3>
+					</div>
+					<div class="panel-body" id="terminal"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
