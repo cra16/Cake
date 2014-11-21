@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ide').controller('IdeController', ['$scope', '$document',
-	function($scope, $document) {
+angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compile',
+	function($scope, $document, Compile) {
 		// Inject workspace after page is loaded.
 		$document.ready(function() {
 			Blockly.inject(document.getElementById('blocklyDiv'),
@@ -23,6 +23,10 @@ angular.module('ide').controller('IdeController', ['$scope', '$document',
 				code = prettyPrintOne(code, 'c');
 				content.innerHTML = code;
 			}
-		}
+		};
+
+		$scope.compile = function() {
+			Compile.get();
+		};
 	}
 ]);
