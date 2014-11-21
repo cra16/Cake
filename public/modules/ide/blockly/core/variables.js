@@ -54,34 +54,89 @@ Blockly.Variables.allVariables = function(opt_block) {
   var variableHash = Object.create(null);
   // Iterate through every block and add each variable to the hash.
   for (var x = 0; x < blocks.length; x++) {
-    var func = blocks[x].getDeclare;
+    var funcVar = blocks[x].getDeclare;
+    var funcParamInfo = blocks[x].getParamInfo;
+    var funcStructDefine = blocks[x].getStructDefine;
+    var funcStructDeclare = blocks[x].getStructDeclare;
+
     // window.alert(func);
-    if (func) {
-      var blockVariablesName = func.call(blocks[x]);
-      var funcType = blocks[x].getTypes;
-      var blockVariablesType = funcType.call(blocks[x]);
+    if (funcVar) {
+      var blockVariablesName = funcVar.call(blocks[x]);
+      var funcVarType = blocks[x].getTypes;
+      var blockVariablesType = funcVarType.call(blocks[x]);
+      var funcVarDist = blocks[x].getDist;
+      var blockDistribute = funcVarDist.call(blocks[x]);
       // window.alert(blockVariablesName);
       // window.alert(blockVariablesType);
+      // window.alert(blockDistribute);
+      for (var w = 0; w < blockDistribute.length; w++) {
+        var varDist = blockDistribute[w];
+      }
       for (var z = 0; z < blockVariablesType.length; z++) {
         var varType = blockVariablesType[z];
       }
       for (var y = 0; y < blockVariablesName.length; y++) {
         var varName = blockVariablesName[y];
-        // Variable name may be null if the block is only half-built.
-        // if (varName) {
-        //   variableHash[varName.toLowerCase()] = [varType, varName];
-        // }
       }
       if (varName) {
-          variableHash[varName.toLowerCase()] = [varType, varName];
-        }
+        variableHash[varName.toLowerCase()] = [varType, varName, varDist];
+      }
+    } else if (funcParamInfo) {
+
+    } else if (funcStructDefine) {
+      var blockStructureType = funcStructDefine.call(blocks[x]);
+      var funcStructDist = blocks[x].getDist;
+      var blockStructDist = funcStructDist.call(blocks[x]);
+      //structure member
+      var funcStructMem = blocks[x].getMems;
+      var blockStructMem = funcStructMem.call(blocks[x]);
+      //structure type
+      var funcStructType = blocks[x].getTypes;
+      var blockStructMemType = funcStructType.call(blocks[x]);
+
+      for (var w = 0; w < blockStructDist.length; w++) {
+        var structDist = blockStructDist[w];
+      }
+      for (var y = 0; y < blockStructureType.length; y++) {
+        var structType = blockStructureType[y];
+      }
+      for (var z = 0; z < blockStructMemType.length; z++) {
+        var structMemType = blockStructMemType[z];
+      }
+      for (var v = 0; v < blockStructMem.length; v++) {
+        var structMem = blockStructMem[v];
+      }
+
+      if (structType) {
+        variableHash[structType.toLowerCase()] = [
+          [structMemType, structMem], structType, structDist
+        ];
+      }
+    } 
+    else if (funcStructDeclare) {
+      var blockStructName = funcStructDeclare.call(blocks[x]);
+      var funcStructType = blocks[x].getTypes;
+      var blockStructType = funcStructType.call(blocks[x]);
+      var funcStructDist = blocks[x].getDist;
+      var blockStructDist = funcStructDist.call(blocks[x]);
+      for (var w = 0; w < blockStructDist.length; w++) {
+        var structDist = blockStructDist[w];
+      }
+      for (var z = 0; z < blockStructType.length; z++) {
+        var structType = blockStructType[z];
+      }
+      for (var y = 0; y < blockStructName.length; y++) {
+        var structName = blockStructName[y];
+      }
+      if (structName) {
+        variableHash[structName.toLowerCase()] = [structType, structName, structDist];
+      }
     }
   }
   // Flatten the hash into a list.
   var variableList = [];
   for (var name in variableHash) {
-    variableList.push([variableHash[name][0], variableHash[name][1]]);
-    // window.alert(variableList);
+    variableList.push([variableHash[name][0], variableHash[name][1], variableHash[name][2]]);
   }
   return variableList;
 };
@@ -123,10 +178,10 @@ Blockly.Variables.flyoutCategory = function(blocks, gaps, margin, workspace) {
       continue;
     }
     var getBlock = Blockly.Blocks['variables_get'] ?
-        Blockly.Block.obtain(workspace, 'variables_get') : null;
+      Blockly.Block.obtain(workspace, 'variables_get') : null;
     getBlock && getBlock.initSvg();
     var setBlock = Blockly.Blocks['variables_set'] ?
-        Blockly.Block.obtain(workspace, 'variables_set') : null;
+      Blockly.Block.obtain(workspace, 'variables_set') : null;
     setBlock && setBlock.initSvg();
     if (variableList[i][1] === null) {
       defaultVariable = (getBlock || setBlock).getVars()[0];
@@ -145,17 +200,20 @@ Blockly.Variables.flyoutCategory = function(blocks, gaps, margin, workspace) {
 };
 
 /**
-* Return a new variable name that is not yet being used. This will try to
-* generate single letter variable names in the range 'i' to 'z' to start with.
-* If no unique name is located it will try 'i1' to 'z1', then 'i2' to 'z2' etc.
-* @return {string} New variable name.
-*/
+ * Return a new variable name that is not yet being used. This will try to
+ * generate single letter variable names in the range 'i' to 'z' to start with.
+ * If no unique name is located it will try 'i1' to 'z1', then 'i2' to 'z2' etc.
+ * @return {string} New variable name.
+ */
 Blockly.Variables.generateUniqueName = function() {
   var variableList = Blockly.Variables.allVariables();
   var newName = '';
   if (variableList.length) {
     variableList.sort(goog.string.caseInsensitiveCompare);
-    var nameSuffix = 0, potName = 'i', i = 0, inUse = false;
+    var nameSuffix = 0,
+      potName = 'i',
+      i = 0,
+      inUse = false;
     while (!newName) {
       i = 0;
       inUse = false;

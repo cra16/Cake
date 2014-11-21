@@ -272,7 +272,7 @@ Blockly.Msg.PROCEDURES_CREATE_DO = "Create '%1'";
 Blockly.Msg.PROCEDURES_DEFNORETURN_DO = "";
 Blockly.Msg.PROCEDURES_DEFNORETURN_HELPURL = "https://en.wikipedia.org/wiki/Procedure_%28computer_science%29";
 Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = "do something";
-Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = "to";
+Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = "Name";
 Blockly.Msg.PROCEDURES_DEFNORETURN_TOOLTIP = "Creates a function with no output.";
 Blockly.Msg.PROCEDURES_DEFRETURN_HELPURL = "https://en.wikipedia.org/wiki/Procedure_%28computer_science%29";
 Blockly.Msg.PROCEDURES_DEFRETURN_RETURN = "return";
@@ -353,7 +353,7 @@ Blockly.Msg.VARIABLES_DEFAULT_NAME = "item";
 Blockly.Msg.VARIABLES_GET_CREATE_SET = "Create 'set %1'";
 Blockly.Msg.VARIABLES_GET_HELPURL = "https://code.google.com/p/blockly/wiki/Variables#Get";
 Blockly.Msg.VARIABLES_GET_TAIL = "";
-Blockly.Msg.VARIABLES_GET_TITLE = "";
+Blockly.Msg.VARIABLES_GET_TITLE = "variable";
 Blockly.Msg.VARIABLES_GET_TOOLTIP = "Returns the value of this variable.";
 Blockly.Msg.VARIABLES_SET_CREATE_GET = "Create 'get %1'";
 Blockly.Msg.VARIABLES_SET_HELPURL = "https://code.google.com/p/blockly/wiki/Variables#Set";
@@ -408,14 +408,49 @@ Blockly.Msg.VARIABLES_SET_TYPE_LONG = 'long';
 Blockly.Msg.VARIABLES_SET_TYPE_LONGLONG = 'long long';
 Blockly.Msg.VARIABLES_SET_TYPE_SHORT = 'short';
 Blockly.Msg.VARIABLES_SET_TYPE_LONGDOUBLE = 'long double';
-Blockly.Msg.VARIABLES_SET_ITERATION_NORMAL = 'Normal';
-Blockly.Msg.VARIABLES_SET_ITERATION_DOUBLE = 'Double';
-Blockly.Msg.VARIABLES_SET_ITERATION_TRIPLE = 'Triple';
+Blockly.Msg.VARIABLES_SET_ITERATION_NORMAL = '*';
+Blockly.Msg.VARIABLES_SET_ITERATION_DOUBLE = '**';
+Blockly.Msg.VARIABLES_SET_ITERATION_TRIPLE = '***';
 Blockly.Msg.VARIABLES_DECLARE_TITLE = 'type';
 Blockly.Msg.VARIABLES_DECLARE_NAME = 'name';
 Blockly.Msg.VARIABLES_DECLARE_INIT = 'initial value';
 Blockly.Msg.VARIABLES_POINTER_DECLARE_TITLE = 'type';
-Blockly.Msg.VARIABLES_POINTER_DECLARE_ITERATION = '중첩';
+Blockly.Msg.VARIABLES_POINTER_DECLARE_ITERATION = '';
 Blockly.Msg.VARIABLES_ARRAY_DECLARE_TITLE = 'type';
 Blockly.Msg.VARIABLES_ARRAY_DECLARE_LENGTH = 'length';
 Blockly.Msg.VARIABLES_RETURN = 'return ';
+
+Blockly.Msg.POINTER_GET_TITLE = "pointer";
+Blockly.Msg.ARRAY_GET_TITLE = "array";
+
+Blockly.Msg.FUNCTION_SET_TYPE_INT = 'int';
+Blockly.Msg.FUNCTION_SET_TYPE_FLOAT = 'float';
+Blockly.Msg.FUNCTION_SET_TYPE_DOUBLE = 'double';
+Blockly.Msg.FUNCTION_SET_TYPE_LONG = 'long';
+Blockly.Msg.FUNCTION_SET_TYPE_LONGLONG = 'long long';
+Blockly.Msg.FUNCTION_SET_TYPE_SHORT = 'short';
+Blockly.Msg.FUNCTION_SET_TYPE_LONGDOUBLE = 'long double';
+Blockly.Msg.FUNCTION_SET_TYPE_CHAR = 'char';
+
+Blockly.Msg.DEFINE_DECLARE_TITLE = '#define';
+Blockly.Msg.DEFINE_DECLARE_INIT = 'is';
+Blockly.Msg.DEFINE_GET_TITLE = '#define';
+Blockly.Msg.DEFINE_SET_TYPE_CONSTANT = 'constant';
+Blockly.Msg.DEFINE_SET_TYPE_MACRO = 'macro';
+
+Blockly.Msg.MAIN_BLOCK = 'int main with: int argc, char **argv';
+
+Blockly.Msg.CONTROLS_SWITCH = 'switch ';
+Blockly.Msg.CONTROLS_SWITCH_CASE = 'case';
+
+Blockly.Msg.STRUCTURE_DEFINE_TITLE = 'structure type name';
+Blockly.Msg.STRUCTURE_DEFINE_NAME = 'myStructure';
+Blockly.Msg.STRUCTURE_MUTATORCONTAINER_TITLE = 'members';
+Blockly.Msg.STRUCTURE_MUTATORARG_TITLE = 'member type';
+Blockly.Msg.STRUCTURE_MUTATORARG_NAME = 'name';
+
+Blockly.Msg.STRUCTURE_DECLARE_TITLE = 'type';
+Blockly.Msg.STRUCTURE_DECLARE_TALE = 'name';
+Blockly.Msg.STRUCTURE_DECLARE_NAME = 'myStructure1';
+
+Blockly.Msg.UNION_DEFINE_NAME = 'myUnion';

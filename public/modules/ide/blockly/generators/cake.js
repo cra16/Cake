@@ -96,7 +96,7 @@ Blockly.cake.ORDER_NONE = 99;          // (...)
 Blockly.cake.INFINITE_LOOP_TRAP = null;
 
 /**
- * Initialise the database of variable names.
+ * Initialize the database of variable names.
  */
 Blockly.cake.init = function() {
   // Create a dictionary of definitions to be printed before the code.
@@ -135,23 +135,31 @@ Blockly.cake.finish = function(code) {
   if (code) {
     code = this.prefixLines(code, Blockly.cake.INDENT);
   }
-  code = 'int main() {\n' + code + '}';
+  code = '\n' + code;
 
   // Convert the definitions dictionary into a list.
   var includes = [];
   var definitions = [];
+  var func_definitions = [];
   for (var name in Blockly.cake.definitions_) {
     var def = Blockly.cake.definitions_[name];
-    if (def.match(/^include\s/)) {
+    var nameInclude = 'include';
+    var nameFunc = 'Func'
+    if (name.match(nameInclude)) {
       includes.push(def);
-    } else {
+    } 
+    else if(name.match(nameFunc)){      
       definitions.push(def);
+    }
+    else{
+      func_definitions.push(def);
     }
   }
   //imports--> #include
   //definitions--> function def, #def
   var allDefs = includes.join('\n') + '\n\n' + definitions.join('\n\n');
-  return allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n\n\n') + code;
+  var allFuncs = func_definitions.join('\n\n');
+  return allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n\n\n') + code + allFuncs.replace(/\n\n+/g, '\n\n');
 }
 
 Blockly.cake.finishFull = function(code) {
