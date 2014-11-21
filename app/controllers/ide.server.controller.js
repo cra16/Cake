@@ -1,16 +1,20 @@
 'use strict';
 
-var exec = require("child_process").exec;
+var exec = require('child_process').exec;
 
 /**
  * exec?
  */
 exports.get = function (req, res) {
-    console.log("exec");
+    console.log('exec');
 
-    exec("./public/code/magic_square", function (error, stdout, srderr) {
-        console.log(stdout);
+    exec('./public/code/magic_square', function (error, stdout, srderr) {
+        //console.log(stdout);
+        //res.send(stdout);
+        //res.redirect('/');
+        res.send(stdout);
     });
+
 };
 
 /*
