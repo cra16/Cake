@@ -8,7 +8,7 @@ var exec = require("child_process").exec;
 exports.get = function (req, res) {
     console.log("exec");
 
-    exec("ls -lah", function (error, stdout, srderr) {
+    exec("./public/code/magic_square", function (error, stdout, srderr) {
         console.log(stdout);
     });
 };
