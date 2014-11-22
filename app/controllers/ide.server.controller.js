@@ -9,10 +9,20 @@ exports.get = function (req, res) {
     console.log('exec');
 
     exec('./public/code/magic_square', function (error, stdout, srderr) {
-        //console.log(stdout);
+        console.log(stdout);
         //res.send(stdout);
         //res.redirect('/');
-        res.send(stdout);
+        //res.set('Content-Type', 'text/html');
+        //res.send(new Buffer(stdout));
+        res.format({
+            //'text/plain': function(){
+            //    res.send('hey');
+            //},
+
+            'text/html': function(){
+                res.send("<p>This is a Magic Square program.</p>");
+            }
+        });
     });
 
 };

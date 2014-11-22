@@ -157,9 +157,9 @@ Blockly.cake.finish = function(code) {
   }
   //imports--> #include
   //definitions--> function def, #def
-  var allDefs = includes.join('\n') + '\n\n' + definitions.join('\n\n');
-  var allFuncs = func_definitions.join('\n\n');
-  return allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n\n\n') + code + allFuncs.replace(/\n\n+/g, '\n\n');
+  var allDefs = includes.join('\n') + '\n' + definitions.join('\n');
+  var allFuncs = func_definitions.join('\n');
+  return allDefs.replace(/\n+/g, '\n').replace(/\n*$/, '\n') + code + allFuncs.replace(/\n+/g, '\n');
 }
 
 Blockly.cake.finishFull = function(code) {
@@ -168,7 +168,7 @@ Blockly.cake.finishFull = function(code) {
   for (var name in Blockly.cake.definitions_) {
     definitions.push(Blockly.cake.definitions_[name]);
   }
-  code = definitions.join('\n\n') + '\n\n' + 
+  code = definitions.join('\n') + '\n' +
   'void setPos(float x, float y, float z) {\n\tfloat pos[3];\n\tpos[0] = x; pos[1] = y; pos[2] = z;\n\tapi.setPositionTarget(pos);\n}'
   + '\n\n' + code;
   //HACK: Make sure the code contains an init function in case the init page has not been properly initialized

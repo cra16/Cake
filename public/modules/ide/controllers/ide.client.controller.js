@@ -26,8 +26,10 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 		};
 
 		$scope.compile = function() {
-			$scope.code = Compile.get();
-			console.log($scope.code);
+			$scope.value = true;
+			//$scope.code = Compile.get();
+			//console.log($scope.code);
+			//$scope.code = "";
 		};
 	}
 ]);
