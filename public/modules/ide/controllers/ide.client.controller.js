@@ -26,10 +26,21 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 		};
 
 		$scope.compile = function() {
-			$scope.value = true;
+			//$scope.value = true;
 			//$scope.code = Compile.get();
 			//console.log($scope.code);
 			//$scope.code = "";
+			//Blockly.cake.workspaceToCode() = Compile.get();
+			//console.log(code);
+			var code = new Compile({
+				content: Blockly.cake.workspaceToCode()
+			});
+			code.$save(function(response) {
+				$scope.terminal = response.content;
+				console.log($scope.terminal);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
 		};
 	}
 ]);
