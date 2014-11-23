@@ -42,5 +42,16 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 				$scope.error = errorResponse.data.message;
 			});
 		};
+
+		/**
+		 * Discard all blocks from the workspace.
+		 */
+		$scope.discard = function() {
+			var count = Blockly.mainWorkspace.getAllBlocks().length;
+			if (count < 2 || window.confirm("Remove all blocks?")) {
+				Blockly.mainWorkspace.clear();
+				window.location.hash = '';
+			}
+		}
 	}
 ]);
