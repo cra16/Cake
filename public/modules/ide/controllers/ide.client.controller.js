@@ -52,6 +52,18 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 				Blockly.mainWorkspace.clear();
 				window.location.hash = '';
 			}
+		};
+
+		/**
+		 * Save current codes into a *.c file.
+		 * https://github.com/eligrey/FileSaver.js
+		 */
+		$scope.downloadCode = function() {
+			var code = Blockly.cake.workspaceToCode();
+			var codeArray = [];
+			codeArray.push(code);
+			var codeBlob = new Blob(codeArray, {type: "text/plain;charset=utf-8"});
+			saveAs(codeBlob, "your_code.c");
 		}
 	}
 ]);
