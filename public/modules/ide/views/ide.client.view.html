@@ -30,17 +30,34 @@
 			</div>
 			<xml id="toolbox">
 				<category name="Variables">
-					<block type="variables_declare"></block>
-					<block type="variables_get"></block>
-					<block type="variables_set"></block>
-					<block type="variables_pointer_declare"></block>
-					<block type="variables_pointer_get"></block>
-					<block type="variables_pointer_set"></block>
-					<block type="variables_array_declare"></block>
-					<block type="variables_array_get"></block>
-					<block type="variables_array_set"></block>
-					<block type="define_declare"><value name="VALUE"><block type="text"></block></value></block>
-					<block type="define_get"></block>
+					<category name="#Define">
+						<block type="define_declare"><value name="VALUE"><block type="text"></block></value></block>
+						<block type="define_get"></block>
+					</category>
+					<category name="Variable">
+						<block type="variables_declare"></block>
+						<block type="variables_get"></block>
+						<block type="variables_set"></block>
+					</category>
+					<category name="Pointer">
+						<block type="variables_pointer_declare"></block>
+						<block type="variables_pointer_get"></block>
+						<block type="variables_pointer_set">
+							<value name="VAR">
+								<block type="variables_pointer_*">
+									<value name="VALUE">
+										<block type="variables_pointer_get">
+										</block>
+									</value></block>
+							</value></block>
+						<block type="variables_pointer_&"></block>
+						<block type="variables_pointer_*"></block>
+					</category>
+					<category name="Array">
+						<block type="variables_array_declare"></block>
+						<block type="variables_array_get"></block>
+						<block type="variables_array_set"></block>
+					</category>
 				</category>
 				<category name="Arithmetics">
 					<block type="math_number"></block>
@@ -65,9 +82,7 @@
 				<category name="Functions" custom="PROCEDURE">
 				</category>
 				</category>
-				<category name="Structure">
-					<block type="structure_define"></block>
-					<block type="structure_declare"></block>
+				<category name="Structure" custom="STRUCTURE">
 				</category>
 				<category name="Library">
 					<category name="Stdio">
@@ -107,7 +122,6 @@
 									<block type="library_func_paren"></block>
 								</value>
 							</block>
-							>>>>>>> develop_woong
 						</category>
 						<category name="I/O">
 							<block type="library_stdio_printf">
@@ -170,10 +184,36 @@
 						</block>
 					</category>
 					<category name="Math">
-						<block type="library_func_paren"></block>
-						<block type="library_math_sin"></block>
-						<block type="library_math_cos"></block>
-						<block type="library_math_tan"></block>
+						<block type="library_math_sin">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_math_cos">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_math_tan">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_math_pow">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_math_sqrt">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
+						<block type="library_math_abs">
+							<value name="TEXT">
+								<block type="library_func_paren"></block>
+							</value>
+						</block>
 					</category>
 				</category>
 			</xml>

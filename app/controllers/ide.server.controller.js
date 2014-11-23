@@ -61,7 +61,7 @@ exports.doCompile = function (req, res) {
             console.log(srderr);
             var output = {
                 content: stdout
-            }
+            };
             res.json(output);
         });
     });

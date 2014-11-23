@@ -353,7 +353,7 @@ Blockly.Msg.VARIABLES_DEFAULT_NAME = "item";
 Blockly.Msg.VARIABLES_GET_CREATE_SET = "Create 'set %1'";
 Blockly.Msg.VARIABLES_GET_HELPURL = "https://code.google.com/p/blockly/wiki/Variables#Get";
 Blockly.Msg.VARIABLES_GET_TAIL = "";
-Blockly.Msg.VARIABLES_GET_TITLE = "variable";
+Blockly.Msg.VARIABLES_GET_TITLE = "";
 Blockly.Msg.VARIABLES_GET_TOOLTIP = "Returns the value of this variable.";
 Blockly.Msg.VARIABLES_SET_CREATE_GET = "Create 'get %1'";
 Blockly.Msg.VARIABLES_SET_HELPURL = "https://code.google.com/p/blockly/wiki/Variables#Set";
@@ -400,6 +400,12 @@ Blockly.Msg.STDLIB_SRAND_TITLE = 'srand %1';
 Blockly.Msg.STDLIB_MALLOC_TITLE = 'malloc %1';
 Blockly.Msg.STDLIB_FREE_TITLE = 'free %1';
 Blockly.Msg.STDLIB_EXIT_TITLE = 'exit %1';
+Blockly.Msg.MATH_SIN_TITLE = 'sin %1';
+Blockly.Msg.MATH_COS_TITLE = 'cos %1';
+Blockly.Msg.MATH_TAN_TITLE = 'tan %1';
+Blockly.Msg.MATH_POW_TITLE = 'pow %1';
+Blockly.Msg.MATH_SQRT_TITLE = 'sqrt %1';
+Blockly.Msg.MATH_ABS_TITLE = 'abs %1';
 
 Blockly.Msg.VARIABLES_SET_TYPE_INT = 'int';
 Blockly.Msg.VARIABLES_SET_TYPE_FLOAT = 'float';
@@ -420,8 +426,8 @@ Blockly.Msg.VARIABLES_ARRAY_DECLARE_TITLE = 'type';
 Blockly.Msg.VARIABLES_ARRAY_DECLARE_LENGTH = 'length';
 Blockly.Msg.VARIABLES_RETURN = 'return ';
 
-Blockly.Msg.POINTER_GET_TITLE = "pointer";
-Blockly.Msg.ARRAY_GET_TITLE = "array";
+Blockly.Msg.POINTER_GET_TITLE = "";
+Blockly.Msg.ARRAY_GET_TITLE = "";
 
 Blockly.Msg.FUNCTION_SET_TYPE_INT = 'int';
 Blockly.Msg.FUNCTION_SET_TYPE_FLOAT = 'float';
@@ -434,7 +440,7 @@ Blockly.Msg.FUNCTION_SET_TYPE_CHAR = 'char';
 
 Blockly.Msg.DEFINE_DECLARE_TITLE = '#define';
 Blockly.Msg.DEFINE_DECLARE_INIT = 'is';
-Blockly.Msg.DEFINE_GET_TITLE = '#define';
+Blockly.Msg.DEFINE_GET_TITLE = '';
 Blockly.Msg.DEFINE_SET_TYPE_CONSTANT = 'constant';
 Blockly.Msg.DEFINE_SET_TYPE_MACRO = 'macro';
 
@@ -452,5 +458,11 @@ Blockly.Msg.STRUCTURE_MUTATORARG_NAME = 'name';
 Blockly.Msg.STRUCTURE_DECLARE_TITLE = 'type';
 Blockly.Msg.STRUCTURE_DECLARE_TALE = 'name';
 Blockly.Msg.STRUCTURE_DECLARE_NAME = 'myStructure1';
+
+Blockly.Msg.STRUCTURE_SET_NAME = 'name';
+Blockly.Msg.STRUCTURE_SET_MEMBER = 'member';
+
+Blockly.Msg.STRUCTURE_GET_NAME = 'name';
+Blockly.Msg.STRUCTURE_GET_MEMBER = 'member';
 
 Blockly.Msg.UNION_DEFINE_NAME = 'myUnion';
