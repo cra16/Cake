@@ -26,11 +26,11 @@ exports.doCompile = function (req, res) {
     //    });
     //});
 
-    console.log(req.body.content);
+    //console.log(req.body.content);
 
     var code = req.body.content;
 
-    fs.writeFile('public/temp.c', code, function (err) {
+    fs.writeFile('public/temp_code.c', code, function (err) {
         if (err) throw err;
     });
 
@@ -45,25 +45,25 @@ exports.doCompile = function (req, res) {
     //    stream.end();
     //});
 
-    exec('gcc -o public/temp public/temp.c', function (error, stdout, srderr) {
-        console.log('error');
-        console.log(error);
-        console.log('stdout');
-        console.log(stdout);
-        console.log('srderr');
-        console.log(srderr);
-        exec('./public/temp', function (error, stdout, srderr) {
+    exec('gcc -o public/temp_code public/temp_code.c', function (error, stdout, srderr) {
+        var output;
+        if (srderr !== '') {
             console.log('error');
-            console.log(error);
-            console.log('stdout');
-            console.log(stdout);
-            console.log('srderr');
             console.log(srderr);
-            var output = {
-                content: stdout
+            output = {
+                content: srderr
             };
+            srderr = null;
             res.json(output);
-        });
+        } else {
+            console.log('stdout');
+            exec('./public/temp_code', function (error, stdout, srderr) {
+                    output = {
+                        content: stdout
+                    };
+                res.json(output);
+            });
+        }
     });
     //fs.open('a.c','w+', function(err, fd) {
     //    var buf = 'abc';
