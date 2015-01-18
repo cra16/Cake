@@ -115,8 +115,8 @@ Blockly.FieldStructureMember.dropdownCreate = function(block) {
   return options;
 
 };
-
-Blockly.FieldStructureMember.dropdownChange = function(block) {
-  block.getInput('struct').removeField('Mem');
-  block.getInput('struct').appendField(new Blockly.FieldStructureMember('--Select--', null, block), 'Mem')
-}
+//
+//Blockly.FieldStructureMember.dropdownChange = function(block) {
+//  block.getInput('struct').removeField('Mem');
+//  block.getInput('struct').appendField(new Blockly.FieldStructureMember('--Select--', null, block), 'Mem')
+//}

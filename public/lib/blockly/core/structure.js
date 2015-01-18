@@ -218,7 +218,7 @@ Blockly.Structure.flyoutCategory = function(blocks, gaps, margin, workspace) {
     for (var x = 0; x < structureList.length; x++) {
       var block = Blockly.Block.obtain(workspace, templateName);
       block.setFieldValue(structureList[x][2], 'NAME');
-      Blockly.FieldStructureMember.dropdownChange(block);
+      //Blockly.FieldStructureMember.dropdownChange(block);
       block.initSvg();
       blocks.push(block);
       gaps.push(margin * 2);
@@ -228,7 +228,7 @@ Blockly.Structure.flyoutCategory = function(blocks, gaps, margin, workspace) {
     for (var x = 0; x < structureList.length; x++) {
       var block = Blockly.Block.obtain(workspace, templateName);
       block.setFieldValue(structureList[x][2], 'NAME');
-      Blockly.FieldStructureMember.dropdownChange(block);
+      //Blockly.FieldStructureMember.dropdownChange(block);
       block.initSvg();
       blocks.push(block);
       gaps.push(margin * 2);
