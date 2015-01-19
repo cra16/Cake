@@ -29,7 +29,7 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 			//$scope.value = true;
 			//$scope.code = Compile.get();
 			//console.log($scope.code);
-			//$scope.code = "";
+			//$scope.code = '';
 			//Blockly.cake.workspaceToCode() = Compile.get();
 			//console.log(code);
 			var code = new Compile({
@@ -48,7 +48,7 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 		 */
 		$scope.discard = function() {
 			var count = Blockly.mainWorkspace.getAllBlocks().length;
-			if (count < 2 || window.confirm("Remove all blocks?")) {
+			if (count < 2 || window.confirm('Remove all blocks?')) {
 				Blockly.mainWorkspace.clear();
 				window.location.hash = '';
 			}
@@ -62,8 +62,8 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 			var code = Blockly.cake.workspaceToCode();
 			var codeArray = [];
 			codeArray.push(code);
-			var codeBlob = new Blob(codeArray, {type: "text/plain;charset=utf-8"});
-			saveAs(codeBlob, "your_code.c");
-		}
+			var codeBlob = new Blob(codeArray, {type: 'text/plain;charset=utf-8'});
+			saveAs(codeBlob, 'your_code.c');
+		};
 	}
 ]);
