@@ -9,7 +9,6 @@
 # This is default ignore path, but MEAN.js use lib/ instead.
 # bower_components
 public/lib
-!public/lib/blockly
 
 
 ### Node ###
