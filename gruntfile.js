@@ -6,8 +6,15 @@ module.exports = function(grunt) {
 		serverViews: ['app/views/**/*.*'],
 		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
 		clientViews: ['public/modules/**/views/**/*.html'],
-		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
-		clientCSS: ['public/modules/**/*.css'],
+		clientJS: [
+			'public/js/*.js',
+			'public/modules/**/*.js',
+			'!public/modules/ide/js/prettify.js',
+			'!public/modules/ide/js/FileSaver.js'
+		],
+		clientCSS: [
+			'public/modules/**/*.css'
+		],
 		mochaTests: ['app/tests/**/*.js']
 	};
 
@@ -31,7 +38,7 @@ module.exports = function(grunt) {
 			clientViews: {
 				files: watchFiles.clientViews,
 				options: {
-					livereload: true,
+					livereload: true
 				}
 			},
 			clientJS: {
@@ -51,8 +58,7 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 			all: {
-				//src: watchFiles.clientJS.concat(watchFiles.serverJS),
-				src: watchFiles.serverJS,
+				src: watchFiles.clientJS.concat(watchFiles.serverJS),
 				options: {
 					jshintrc: true
 				}
@@ -60,7 +66,7 @@ module.exports = function(grunt) {
 		},
 		csslint: {
 			options: {
-				csslintrc: '.csslintrc',
+				csslintrc: '.csslintrc'
 			},
 			all: {
 				src: watchFiles.clientCSS
@@ -69,10 +75,13 @@ module.exports = function(grunt) {
 		uglify: {
 			production: {
 				options: {
-					mangle: false
+					mangle: true,
+					compress: false,
+					sourceMap: true
 				},
 				files: {
-					'public/dist/application.min.js': 'public/dist/application.js'
+					'public/dist/application.min.js': 'public/dist/application.js'/*,
+					'public/dist/templates.min.js': 'public/dist/templates.js'*/
 				}
 			}
 		},
@@ -80,6 +89,17 @@ module.exports = function(grunt) {
 			combine: {
 				files: {
 					'public/dist/application.min.css': '<%= applicationCSSFiles %>'
+					//'public/dist/vendor.min.css': '<%= vendorCSSFiles %>'
+				}
+			}
+		},
+		concat: {
+			production: {
+				options: {
+					stripBanners: true
+				},
+				files: {
+					'public/dist/vendor.min.js': '<%= vendorJavaScriptFiles %>'
 				}
 			}
 		},
@@ -113,6 +133,22 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		ngtemplates: {
+			options: {
+				htmlmin: {
+					collapseWhitespace: true,
+					removeComments: true
+				},
+				url: function(url) {
+					return url.replace('public', 'assets');
+				},
+				prefix: '/'
+			},
+			'cake': {
+				src: 'public/modules/**/*.html',
+				dest: 'public/dist/templates.js'
+			}
+		},
 		concurrent: {
 			default: ['nodemon', 'watch'],
 			debug: ['nodemon', 'watch', 'node-inspector'],
@@ -127,6 +163,12 @@ module.exports = function(grunt) {
 			},
 			secure: {
 				NODE_ENV: 'secure'
+			},
+			build: {
+				NODE_ENV: 'build'
+			},
+			deploy: {
+				NODE_ENV: 'production'
 			}
 		},
 		mochaTest: {
@@ -154,12 +196,17 @@ module.exports = function(grunt) {
 		var init = require('./config/init')();
 		var config = require('./config/config');
 
+		grunt.config.set('vendorJavaScriptFiles', config.assets.lib.js);
+		grunt.config.set('vendorCSSFiles', config.assets.lib.css);
 		grunt.config.set('applicationJavaScriptFiles', config.assets.js);
 		grunt.config.set('applicationCSSFiles', config.assets.css);
 	});
 
 	// Default task(s).
 	grunt.registerTask('default', ['lint', 'concurrent:default']);
+
+	// Deploy task(s).
+	grunt.registerTask('deploy', ['env:deploy', 'concurrent:default']);
 
 	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
@@ -168,12 +215,10 @@ module.exports = function(grunt) {
 	grunt.registerTask('secure', ['env:secure', 'lint', 'concurrent:default']);
 
 	// Lint task(s).
-	//grunt.registerTask('lint', ['jshint', 'csslint']);
-	//grunt.registerTask('lint', ['csslint']);
-	grunt.registerTask('lint', ['jshint']);
+	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['env:build', 'loadConfig', 'ngAnnotate', /*'ngtemplates', */'uglify', 'cssmin', 'concat']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

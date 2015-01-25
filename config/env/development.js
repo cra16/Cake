@@ -5,6 +5,37 @@ module.exports = {
 	app: {
 		title: 'Cake - Development Environment'
 	},
+	assets: {
+		lib: {
+			css: [
+				'public/lib/bootstrap/dist/css/bootstrap.css'
+			],
+			js: [
+				'public/lib/angular/angular.js',
+				'public/lib/angular-resource/angular-resource.js',
+				'public/lib/angular-cookies/angular-cookies.js',
+				'public/lib/angular-animate/angular-animate.js',
+				'public/lib/angular-touch/angular-touch.js',
+				'public/lib/angular-sanitize/angular-sanitize.js',
+				'public/lib/angular-ui-router/release/angular-ui-router.js',
+				'public/lib/angular-ui-utils/ui-utils.js',
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+                'public/lib/jquery/dist/jquery.min.js',
+                'public/lib/blockly/blockly_uncompressed.js',
+				'public/lib/blockly/blocks/*.js',
+				'public/lib/blockly/generators/**/*.js'
+			]
+		},
+		css: [
+			'public/modules/**/css/*.css'
+		],
+		js: [
+			'public/config.js',
+			'public/application.js',
+			'public/modules/*/*.js',
+			'public/modules/*/*[!tests]*/*.js'
+		]
+	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
 		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
