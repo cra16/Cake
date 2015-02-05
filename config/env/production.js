@@ -9,10 +9,10 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.min.css'
 			],
 			js: [
-                'public/lib/blockly/blockly_compressed.js',
-                'public/lib/blockly/blocks_compressed.js',
-                'public/lib/blockly/cake_compressed.js',
-                'public/lib/blockly/msg/js/en.js',
+                'public/lib/cake-core/blockly_compressed.js',
+                'public/lib/cake-core/blocks_compressed.js',
+                'public/lib/cake-core/cake_compressed.js',
+                'public/lib/cake-core/msg/js/ko.js',
                 'public/dist/vendor.min.js'
 			]
 		},
