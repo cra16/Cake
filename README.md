@@ -1,4 +1,4 @@
-Cake [![Stories in Ready](https://badge.waffle.io/cra16/Cake.png?label=ready&title=Ready)](http://waffle.io/cra16/Cake)
+Cake [![Stories in Ready](https://badge.waffle.io/cra16/Cake.png?label=ready&title=Ready)](http://waffle.io/cra16/Cake) [![Code Climate](https://codeclimate.com/github/cra16/Cake/badges/gpa.svg)](https://codeclimate.com/github/cra16/Cake) [![Test Coverage](https://codeclimate.com/github/cra16/Cake/badges/coverage.svg)](https://codeclimate.com/github/cra16/Cake)
 =====
 
 Cake는 모두를 위한 C 언어 그래픽 프로그래밍 도구입니다. 
