@@ -11,6 +11,11 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
         $scope.clientId = config.appId;
         $scope.scopes = config.scopes;
 
+        console.log('headerController');
+        console.log('clientId: ', $scope.clientId);
+        console.log('scopes: ', $scope.scopes);
+        console.log('authentication: ', Authentication);
+
 		$scope.authentication = Authentication;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
@@ -44,7 +49,10 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
             gapi.auth.signOut();
             $location.path('/');
         }
+
+        console.log('config.simpleApiKey: ', config.simpleApiKey);
         gapi.client.setApiKey(config.simpleApiKey);
+        console.log('gapi.client: ', gapi.client);
         //Give global reference for login callback
         angular.module('core').navbarScope = $scope; //필요한 것일까?
 	}

@@ -3,6 +3,27 @@
  */
 
 //Callback to bootstrap Angular AFTER the Google APIs are loaded
+//Callback to bootstrap Angular AFTER the Google APIs are loaded
+/*window.onGapiLoaded = function() {
+
+    if(window.accessToken) {
+        gapi.auth.setToken(window.accessToken);
+    }
+
+    //Bootstrap Angular
+    if(document.readyState !== 'loading') {
+        try{
+            angular.bootstrap(document, ['zr']);
+        } catch(e) {console.log(e)}
+    }
+    else {
+        angular.element(document).ready(function () {
+            angular.bootstrap(document, ['zr']);
+        });
+    }
+
+}*/
+
 window.onGapiLoaded = function() {
     // Monkey patch collaborative string for ng-model compatibility
     Object.defineProperty(gapi.drive.realtime.CollaborativeString.prototype, 'text', {
@@ -20,9 +41,9 @@ window.onGapiLoaded = function() {
     custom.setInitializer(Blockly.Block, Blockly.Block.prototype.initialize);
 
     //Render the login button
-    gapi.signin.render('login-button', {
-        'width': 'wide',
-    });
+    //gapi.signin.render('login-button', {
+    //    'width': 'wide',
+    //});
 
     //Bootstrap Angular
     if(document.readyState !== 'loading') {
@@ -36,6 +57,7 @@ window.onGapiLoaded = function() {
 }
 
 window.loginCallback = function(authResult) {
+    console.log('authResult : ', authResult);
     if(authResult['status'] && authResult['status']['signed_in']) {
         if(angular.module('core').navbarScope) {
             angular.module('core').navbarScope.getUser();

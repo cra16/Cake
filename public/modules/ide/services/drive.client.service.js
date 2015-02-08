@@ -67,6 +67,7 @@ ide.service('drive', ['config', '$modal',
             var me = null;
             this.getUser = function(callback) {
                 var token = gapi.auth.getToken();
+                console.log('get user : ', token);
                 if(token && token.status.signed_in) {
                     if(me) {
                         callback(me);

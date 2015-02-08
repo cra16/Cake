@@ -67,12 +67,10 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 		};
 
         $scope.newProject = function() {
-            console.log('newProject in ide.client.controller');
             drive.newProject();
         };
 
         $scope.openProject = function() {
-            console.log('openProject in ide.client.controller');
             //drive.openProject(function(id, name) {
             //    $timeout(function() {
             //        $location.url('/ide/' + id + '/');
