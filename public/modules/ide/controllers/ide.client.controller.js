@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compile',
-	function($scope, $document, Compile) {
+angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compile', 'drive',
+	function($scope, $document, Compile, drive) {
 		// Inject workspace after page is loaded.
 		$document.ready(function() {
 			Blockly.inject(document.getElementById('blocklyDiv'),
@@ -65,5 +65,19 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 			var codeBlob = new Blob(codeArray, {type: 'text/plain;charset=utf-8'});
 			saveAs(codeBlob, 'your_code.c');
 		};
+
+        $scope.newProject = function() {
+            console.log('newProject in ide.client.controller');
+            drive.newProject();
+        };
+
+        $scope.openProject = function() {
+            console.log('openProject in ide.client.controller');
+            //drive.openProject(function(id, name) {
+            //    $timeout(function() {
+            //        $location.url('/ide/' + id + '/');
+            //    });
+            //});
+        };
 	}
 ]);

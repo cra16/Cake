@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus', 'drive',
-	function($scope, Authentication, Menus, drive) {
+angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus', 'drive','$timeout', 'config',
+	function($scope, Authentication, Menus, drive, $timeout, config) {
 
         /**
          * Requests authorization from the user. Redirects to the previous target
@@ -38,18 +38,6 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
             });
         };
         $scope.getUser();
-
-        $scope.newProject = function() {
-            drive.newProject();
-        };
-
-        $scope.openProject = function() {
-            drive.openProject(function(id, name) {
-                $timeout(function() {
-                    $location.url('/ide/' + id + '/');
-                });
-            });
-        };
 
 
         $scope.signOut = function() {
