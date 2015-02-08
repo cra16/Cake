@@ -40,12 +40,13 @@ angular.module('ide').controller('NewProjectModalController', ['$scope', '$modal
         //    });
         //}
         //else {
-/*            realtime.createDocument($scope.data.name + ' - ' + $scope.data.game.displayName, folder).then(function (file) {
+        console.log('createProject : ', $scope.data.name);
+            realtime.createDocument($scope.data.name, folder).then(function (file) {
                 realtime.ideGraphical = $scope.data.editorMode === 'graphical';
                 realtime.gameId = $scope.data.game.id;
                 $location.url('/ide/' + file.id + '/');
             });
-*/
+
         //}
         $modalInstance.close();
     };
