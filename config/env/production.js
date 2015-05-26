@@ -2,17 +2,17 @@
 
 module.exports = {
 	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/cake',
-	port: process.env.PORT || 3000,
+	port: process.env.PORT || 80,
 	assets: {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css'
 			],
 			js: [
-                'public/lib/blockly/blockly_compressed.js',
-                'public/lib/blockly/blocks_compressed.js',
-                'public/lib/blockly/cake_compressed.js',
-                'public/lib/blockly/msg/js/en.js',
+                'public/lib/cake-core/blockly_compressed.js',
+                'public/lib/cake-core/blocks_compressed.js',
+                'public/lib/cake-core/cake_compressed.js',
+                'public/lib/cake-core/msg/js/ko.js',
                 'public/dist/vendor.min.js'
 			]
 		},

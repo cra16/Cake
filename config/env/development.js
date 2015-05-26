@@ -21,9 +21,10 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
                 'public/lib/jquery/dist/jquery.min.js',
-                'public/lib/blockly/blockly_uncompressed.js',
-				'public/lib/blockly/blocks/*.js',
-				'public/lib/blockly/generators/**/*.js'
+                'public/lib/cake-core/blockly_compressed.js',
+                'public/lib/cake-core/blocks_compressed.js',
+                'public/lib/cake-core/cake_compressed.js',
+                'public/lib/cake-core/msg/js/ko.js'
 			]
 		},
 		css: [
