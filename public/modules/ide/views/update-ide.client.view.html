@@ -1,0 +1,183 @@
+<section data-ng-controller="IdeController"  data-ng-init="findOne()">
+	<div class="container">
+		<nav class="navbar navbar-default" id="toolbar">
+			<div class="collapse navbar-collapse">
+				<div class="btn-toolbar" role="toolbar">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default navbar-btn" ng-click="downloadCode()">
+							<span class="glyphicon glyphicon-download-alt"></span> Download
+						</button>
+						<button type="button" class="btn btn-default navbar-btn" ng-click="discard()" data-toggle="button">
+							<span class="glyphicon glyphicon-trash"></span> Trash
+						</button>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default navbar-btn" ng-click="compile()">
+							<span class="glyphicon glyphicon-play"></span> Run
+						</button>
+					</div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default navbar-btn" ng-click="update()">
+                            <span class="glyphicon glyphicon-save"></span> Save
+                        </button>
+                    </div>
+				</div>
+			</div>
+		</nav>
+		<div id="main-wrapper" class="row">
+			<div class="col-xs-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Workspace</h3>
+					</div>
+					<div id="blocklyDiv" class="panel-body"></div>
+				</div>
+			</div>
+            <xml id="toolbox">
+                <category name="Variables">
+                    <category name="#Define">
+                        <block type="define_declare">
+                        </block>
+                        <block type="math_number"></block>
+                        <block type="library_stdio_text"></block>
+                        <block type="define_get"></block>
+                    </category>
+                    <category name="Variable">
+                        <block type="variables_declare"></block>
+                        <block type="variables_get"></block>
+                        <block type="variables_set"></block>
+                    </category>
+                    <category name="Pointer">
+                        <block type="variables_pointer_declare"></block>
+                        <block type="variables_pointer_get"></block>
+                        <block type="variables_pointer_set">
+                            <value name="VAR">
+                                <block type="variables_pointer_get">
+                                </block>
+                            </value></block>
+                        <block type="variables_pointer_&"></block>
+                        <block type="variables_pointer_*"></block>
+                    </category>
+                    <category name="Array">
+                        <block type="variables_array_declare"></block>
+                        <block type="variables_array_get"></block>
+                        <block type="variables_array_set"></block>
+                    </category>
+                </category>
+                <category name="Arithmetics">
+                    <block type="math_number"></block>
+                    <block type="math_arithmetic"></block>
+                    <block type="math_modulo"></block>
+                </category>
+                <category name="Loops">
+                    <block type="controls_whileUntil"></block>
+                    <block type="controls_doWhile"></block>
+                    <block type="controls_for"></block>
+                    <block type="controls_flow_statements"></block>
+                </category>
+                <category name="Logic">
+                    <block type="controls_if"></block>
+                    <block type="controls_switch"></block>
+                    <block type="controls_switch_break"></block>
+                    <block type="logic_compare"></block>
+                    <block type="logic_operation"></block>
+                    <block type="logic_negate"></block>
+                    <block type="logic_boolean"></block>
+                    <block type="logic_null"></block>
+                    <block type="logic_ternary"></block>
+                </category>
+                <category name="Functions" custom="PROCEDURE">
+                    <block type="procedures_defnoreturn"></block>
+                    <block type="procedures_defreturn"></block>
+                    <block type="procedures_ifreturn"></block>
+                </category>
+                </category>
+                <category name="Structure" custom="STRUCTURE">
+                    <block type="structure_define"></block>
+                    <block type="structure_declare"></block>
+                </category>
+                <category name="Library">
+                    <category name="Stdio">
+                        <block type="library_stdio_printf"></block>
+                        <block type="library_stdio_text"></block>
+                        <block type='library_stdio_newLine'></block>
+                        <block type="library_stdio_scanf"></block>
+                    </category>
+                    <category name="Stdlib">
+                        <block type="library_stdlib_convert"></block>
+                        <block type="library_stdlib_rand">
+                            <value name="VAR">
+                                <block type="library_stdlib_rand_scope">
+                                    <value name="A">
+                                        <block type="library_stdlib_number_forRandScope1"></block>
+                                    </value>
+                                    <value name="B">
+                                        <block type="library_stdlib_number_forRandScope100"></block>
+                                    </value>
+                                </block>
+                            </value>
+                        </block>
+                        <block type="library_stdlib_malloc">
+                            <value name="VAR">
+                                <block type="library_stdlib_arithmetic_forMalloc">
+                                    <value name="A">
+                                        <block type="library_stdlib_sizeof_forMalloc"></block>
+                                    </value>
+                                    <value name="B">
+                                        <block type="library_stdlib_number_forMalloc"></block>
+                                    </value>
+                                </block>
+                            </value>
+                        </block>
+                        <block type="library_stdlib_arithmetic_forMalloc">
+                            <value name="A">
+                                <block type="library_stdlib_sizeof_forMalloc"></block>
+                            </value>
+                            <value name="B">
+                                <block type="library_stdlib_number_forMalloc"></block>
+                            </value>
+                        </block>
+                        <block type="library_stdlib_free"></block>
+                        <block type="library_stdlib_exit"></block>
+                    </category>
+                    <category name="String">
+                        <block type="library_string_strlen"></block>
+                        <block type="library_string_strcat"></block>
+                        <block type="library_string_strcpy"></block>
+                        <block type="library_string_strcmp"></block>
+                    </category>
+                    <category name="Math">
+                        <block type="library_math_abs"></block>
+                        <block type="library_math_trig"></block>
+                        <block type="library_math_logs"></block>
+                        <block type="library_math_pow"></block>
+                        <block type="library_math_exp"></block>
+                        <block type="library_math_sqrt"></block>
+                        <block type="library_math_round"></block>
+                        <block type="library_math_numcheck"></block>
+                        <block type="library_math_numcompare"></block>
+                    </category>
+                    <category name="Time">
+                        <block type="library_time_current"></block>
+                        <block type="library_time_requiredTime"></block>
+                    </category>
+                </category>
+            </xml>
+			<div class="col-xs-4">
+				<div id="code-wrapper" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Code</h3>
+					</div>
+					<pre id="code" class="panel-body pre-scrollable"></pre>
+				</div>
+				<div id="terminal-wrapper" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Console</h3>
+					</div>
+					<pre class="panel-body" id="terminal">{{terminal}}
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

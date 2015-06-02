@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compile',
-	function($scope, $document, Compile) {
+angular.module('ide').controller('IdeController', ['$scope', '$document', '$stateParams', '$location', 'Authentication', 'Projects', 'Compile',
+	function($scope, $document, $stateParams, $location, Authentication, Projects, Compile) {
+
+        $scope.authentication = Authentication;
+
 		// Inject workspace after page is loaded.
 		$document.ready(function() {
 			Blockly.inject(document.getElementById('blocklyDiv'),
@@ -65,5 +68,76 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', 'Compi
 			var codeBlob = new Blob(codeArray, {type: 'text/plain;charset=utf-8'});
 			saveAs(codeBlob, 'your_code.c');
 		};
+/*
+        $scope.create = function () {
+           var xml = 'xml';
+            var title = 'new project';
+           // var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+            var project = new Projects({
+                //title: this.title,
+                title: title,
+                content: xml
+            });
+            project.$save(function (response) {
+                $location.path('projects/' + response._id);
+
+                $scope.title = '';
+                $scope.content = '';
+            });
+         };
+*/
+        $scope.create = function () {
+            var xml = 'xml';
+            var title = 'new project';
+
+            var project = new Projects({
+                title: title,
+                content: xml
+            });
+            project.$save(function (response) {
+                $location.path('projects/' + response._id);
+
+                $scope.title = '';
+                $scope.content = '';
+            }, function (errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+
+        $scope.remove = function (project) {
+            if (project) {
+                project.$remove();
+
+                for (var i in $scope.projects) {
+                    if ($scope.projects[i] === project) {
+                        $scope.projects.splice(i, 1);
+                    }
+                }
+            } else {
+                $scope.project.$remove(function () {
+                    $location.path('projects');
+                });
+            }
+        };
+
+        $scope.update = function () {
+            var project = $scope.project;
+
+            project.$update(function () {
+                $location.path('projects/' + project._id);
+            }, function (errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+
+        $scope.find = function () {
+            $scope.projects = Projects.query();
+        };
+
+        $scope.findOne = function () {
+            $scope.project = Projects.get({
+                projectId: $stateParams.projectId
+            });
+        };
 	}
 ]);

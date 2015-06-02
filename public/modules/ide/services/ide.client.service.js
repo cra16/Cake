@@ -6,3 +6,16 @@ angular.module('ide').factory('Compile', ['$resource',
         return $resource('ide');
     }
 ]);
+
+angular.module('ide').factory('Projects', ['$resource',
+    function ($resource) {
+        return $resource('projects/:projectId', {
+            projectId: '@_id'
+        }, {
+            update: {
+                method: 'PUT'
+            }
+        });
+    }
+
+]);
