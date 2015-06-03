@@ -5,20 +5,23 @@
 				<div class="btn-toolbar" role="toolbar">
 					<div class="btn-group">
 						<button type="button" class="btn btn-default navbar-btn" ng-click="downloadCode()">
-							<span class="glyphicon glyphicon-download-alt"></span> Download
+							<span class="glyphicon glyphicon-download-alt"></span> Download Code
 						</button>
 						<button type="button" class="btn btn-default navbar-btn" ng-click="discard()" data-toggle="button">
-							<span class="glyphicon glyphicon-trash"></span> Trash
+							<span class="glyphicon glyphicon-trash"></span> Trash All Blocks
 						</button>
 					</div>
 					<div class="btn-group">
 						<button type="button" class="btn btn-default navbar-btn" ng-click="compile()">
-							<span class="glyphicon glyphicon-play"></span> Run
+							<span class="glyphicon glyphicon-play"></span> Run Project
 						</button>
 					</div>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default navbar-btn" ng-click="update()">
-                            <span class="glyphicon glyphicon-save"></span> Save
+                            <span class="glyphicon glyphicon-save"></span> Save Project
+                        </button>
+                        <button class="btn btn-default navbar-btn" ng-click="remove();">
+                            <span class="glyphicon glyphicon-trash"></span> Delete Project
                         </button>
                     </div>
 				</div>
