@@ -6,18 +6,6 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
         $scope.authentication = Authentication;
 
 		//Inject workspace after page is loaded.
-
-		//$document.ready(function() {
-		//	Blockly.inject(document.getElementById('blocklyDiv'),
-		//		{
-		//			path: '../',
-		//			toolbox: document.getElementById('toolbox')
-		//		}
-		//	);
-		//	Blockly.addChangeListener(renderContent);
-         //   //Blockly.mainWorkspace.clear();
-        //});
-
         $scope.newWorkspace = function() {
             $scope.inject();
             Blockly.Blocks.CreateMainBlock();
