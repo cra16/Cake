@@ -16,7 +16,9 @@ module.exports = function(app) {
     app.route('/projects/:projectId')
         .get(projectsController.read)
         .put(users.requiresLogin, projectsController.hasAuthorization, projectsController.update)
-        .delete(users.requiresLogin, projectsController.hasAuthorization, projectsController.delete)
+        .delete(users.requiresLogin, projectsController.hasAuthorization, projectsController.delete);
+
+    app.route('/projects/compile')
         .post(projectsController.doCompile);
 
     app.param('projectId', projectsController.projectByID);
