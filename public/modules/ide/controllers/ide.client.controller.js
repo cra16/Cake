@@ -141,6 +141,8 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
         };
 
         $scope.findOne = function () {
+            $scope.inject();
+
             //$scope.project = Projects.get({
             //    projectId: $stateParams.projectId
             //});
@@ -150,7 +152,6 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
             }).$promise.then(function (project) {
                     //Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content));
 
-                    Blockly.mainWorkspace.clear();
                     Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content).childNodes[0]);
                     console.log('project!!!!')
                 }, function (errResponse) { });
