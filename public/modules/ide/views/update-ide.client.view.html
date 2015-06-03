@@ -35,13 +35,6 @@
 			</div>
             <xml id="toolbox">
                 <category name="Variables">
-                    <category name="#Define">
-                        <block type="define_declare">
-                        </block>
-                        <block type="math_number"></block>
-                        <block type="library_stdio_text"></block>
-                        <block type="define_get"></block>
-                    </category>
                     <category name="Variable">
                         <block type="variables_declare"></block>
                         <block type="variables_get"></block>
@@ -161,6 +154,17 @@
                         <block type="library_time_current"></block>
                         <block type="library_time_requiredTime"></block>
                     </category>
+                </category>
+                <category name="Others">
+                    <block type='comment'>
+                        <value name="VAR0">
+                            <block type="library_stdio_text"></block>
+                        </value>
+                    </block>
+                    <block type="library_stdio_text"></block>
+                    <block type="math_number"></block>
+                    <block type="define_declare"></block>
+                    <block type="define_get"></block>
                 </category>
             </xml>
 			<div class="col-xs-4">
