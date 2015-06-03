@@ -1,42 +1,40 @@
-<section data-ng-controller="IdeController">
-	<div class="container">
-		<nav class="navbar navbar-default" id="toolbar">
-			<div class="collapse navbar-collapse">
-				<div class="btn-toolbar" role="toolbar">
-					<div class="btn-group">
-						<button type="button" class="btn btn-default navbar-btn" ng-click="downloadCode()">
-							<span class="glyphicon glyphicon-download-alt"></span> Download
-						</button>
-						<button type="button" class="btn btn-default navbar-btn" ng-click="discard()" data-toggle="button">
-							<span class="glyphicon glyphicon-trash"></span> Trash
-						</button>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default navbar-btn" ng-click="compile()">
-							<span class="glyphicon glyphicon-play"></span> Run
-						</button>
-					</div>
-				</div>
-			</div>
-		</nav>
-		<div id="main-wrapper" class="row">
-			<div class="col-xs-8">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Workspace</h3>
-					</div>
-					<div id="blocklyDiv" class="panel-body"></div>
-				</div>
-			</div>
+<section data-ng-controller="IdeController" data-ng-init="newWorkspace()">
+    <div class="container">
+        <nav class="navbar navbar-default" id="toolbar">
+            <div class="collapse navbar-collapse">
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default navbar-btn" ng-click="downloadCode()">
+                            <span class="glyphicon glyphicon-download-alt"></span> Download
+                        </button>
+                        <button type="button" class="btn btn-default navbar-btn" ng-click="discard()" data-toggle="button">
+                            <span class="glyphicon glyphicon-trash"></span> Trash
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default navbar-btn" ng-click="compile()">
+                            <span class="glyphicon glyphicon-play"></span> Run
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default navbar-btn" ng-click="create()">
+                            <span class="glyphicon glyphicon-save"></span> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="main-wrapper" class="row">
+            <div class="col-xs-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Workspace</h3>
+                    </div>
+                    <div id="blocklyDiv" class="panel-body"></div>
+                </div>
+            </div>
             <xml id="toolbox">
                 <category name="Variables">
-                    <category name="#Define">
-                        <block type="define_declare">
-                        </block>
-                        <block type="math_number"></block>
-                        <block type="library_stdio_text"></block>
-                        <block type="define_get"></block>
-                    </category>
                     <category name="Variable">
                         <block type="variables_declare"></block>
                         <block type="variables_get"></block>
@@ -157,22 +155,33 @@
                         <block type="library_time_requiredTime"></block>
                     </category>
                 </category>
+                <category name="Others">
+                    <block type='comment'>
+                        <value name="VAR0">
+                            <block type="library_stdio_text"></block>
+                        </value>
+                    </block>
+                    <block type="library_stdio_text"></block>
+                    <block type="math_number"></block>
+                    <block type="define_declare"></block>
+                    <block type="define_get"></block>
+                </category>
             </xml>
-			<div class="col-xs-4">
-				<div id="code-wrapper" class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Code</h3>
-					</div>
-					<pre id="code" class="panel-body pre-scrollable"></pre>
-				</div>
-				<div id="terminal-wrapper" class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Console</h3>
-					</div>
+            <div class="col-xs-4">
+                <div id="code-wrapper" class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Code</h3>
+                    </div>
+                    <pre id="code" class="panel-body pre-scrollable"></pre>
+                </div>
+                <div id="terminal-wrapper" class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Console</h3>
+                    </div>
 					<pre class="panel-body" id="terminal">{{terminal}}
 					</pre>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

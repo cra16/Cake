@@ -1,6 +1,5 @@
 # Created by https://www.gitignore.io
 # Carefully crafted gitignore just for Cake
-# Cake만을 위한 gitignore 목록
 
 ### Project specific ignore list ###
 
@@ -137,3 +136,6 @@ dist/
 
 # sftp configuration file
 sftp-config.json
+
+# temp c code
+public/tmp
