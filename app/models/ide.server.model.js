@@ -20,7 +20,8 @@ var ProjectSchema = new Schema({
         required: 'Title cannot be blank'
     },
     content: {
-        type: String,
+        //type: String,
+        type: Object,
         default: '',
         trim: true
     },

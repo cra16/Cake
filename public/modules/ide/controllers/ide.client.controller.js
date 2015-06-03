@@ -4,7 +4,7 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
 	function($scope, $document, $stateParams, $location, Authentication, Projects, Compile) {
 
         $scope.authentication = Authentication;
-
+        $scope.xml ;
 		// Inject workspace after page is loaded.
 		$document.ready(function() {
 			Blockly.inject(document.getElementById('blocklyDiv'),
@@ -14,7 +14,8 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
 				}
 			);
 			Blockly.addChangeListener(renderContent);
-		});
+            Blockly.mainWorkspace.clear();
+        });
 
 		// Render contents with pretty print.
 		var renderContent = function () {
@@ -87,18 +88,21 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
          };
 */
         $scope.create = function () {
-            var xml = 'xml';
-            var title = 'new project';
+            //var xml = 'xml';
+           // var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+            $scope.xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+
+            var title = 'New CAKE Project';
 
             var project = new Projects({
                 title: title,
-                content: xml
+                content: Blockly.Xml.workspaceToDom(Blockly.mainWorkspace).outerHTML.toString()
             });
             project.$save(function (response) {
                 $location.path('projects/' + response._id);
 
                 $scope.title = '';
-                $scope.content = '';
+                $scope.content = {};
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -122,6 +126,7 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
 
         $scope.update = function () {
             var project = $scope.project;
+            project.content = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
 
             project.$update(function () {
                 $location.path('projects/' + project._id);
@@ -135,9 +140,22 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
         };
 
         $scope.findOne = function () {
-            $scope.project = Projects.get({
+            //$scope.project = Projects.get({
+            //    projectId: $stateParams.projectId
+            //});
+
+            Projects.get({
                 projectId: $stateParams.projectId
-            });
+            }).$promise.then(function (project) {
+                    //Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content));
+
+                    Blockly.mainWorkspace.clear();
+                    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content).childNodes[0])
+                    console.log('project!!!!')
+                }, function (errResponse) {
+                    //fail
+                });
+
         };
 	}
 ]);
