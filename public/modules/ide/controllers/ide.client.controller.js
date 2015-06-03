@@ -143,15 +143,11 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
         $scope.findOne = function () {
             $scope.inject();
 
-            //$scope.project = Projects.get({
-            //    projectId: $stateParams.projectId
-            //});
-
             $scope.project = Projects.get({
                 projectId: $stateParams.projectId
-            }).$promise.then(function (project) {
-                    //Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content));
+            });
 
+            $scope.project.$promise.then(function (project) {
                     Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content).childNodes[0]);
                     console.log('project!!!!')
                 }, function (errResponse) { });
