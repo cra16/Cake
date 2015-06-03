@@ -92,9 +92,6 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
          };
 */
         $scope.create = function () {
-            //var xml = 'xml';
-           // var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-            $scope.xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
 
             var title = 'New CAKE Project';
 
@@ -106,7 +103,7 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
                 $location.path('projects/' + response._id);
 
                 $scope.title = '';
-                $scope.content = {};
+                $scope.content = '';
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -130,7 +127,7 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
 
         $scope.update = function () {
             var project = $scope.project;
-            project.content = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+            project.content = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace).outerHTML.toString();
 
             project.$update(function () {
                 $location.path('projects/' + project._id);
@@ -144,21 +141,19 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
         };
 
         $scope.findOne = function () {
-            $scope.inject();
             //$scope.project = Projects.get({
             //    projectId: $stateParams.projectId
             //});
 
-            Projects.get({
+            $scope.project = Projects.get({
                 projectId: $stateParams.projectId
             }).$promise.then(function (project) {
+                    //Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content));
 
-                    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content).childNodes[0])
+                    Blockly.mainWorkspace.clear();
+                    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content).childNodes[0]);
                     console.log('project!!!!')
-                }, function (errResponse) {
-                    //fail
-                });
-
+                }, function (errResponse) { });
         };
 	}
 ]);
