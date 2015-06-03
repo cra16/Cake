@@ -7,31 +7,26 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
 
 		//Inject workspace after page is loaded.
 
-		//$document.ready(function() {
-		//	Blockly.inject(document.getElementById('blocklyDiv'),
-		//		{
-		//			path: '../',
-		//			toolbox: document.getElementById('toolbox')
-		//		}
-		//	);
-		//	Blockly.addChangeListener(renderContent);
-         //   //Blockly.mainWorkspace.clear();
+		$document.ready(function() {
+			Blockly.inject(document.getElementById('blocklyDiv'),
+				{
+					path: '../',
+					toolbox: document.getElementById('toolbox')
+				}
+			);
+			Blockly.addChangeListener(renderContent);
+            //Blockly.mainWorkspace.clear();
+        });
+
+        //$scope.inject = function() {
+        //    Blockly.inject(document.getElementById('blocklyDiv'),
+        //        {
+        //            path: '../',
+        //            toolbox: document.getElementById('toolbox')
+        //        }
+        //    );
+        //    Blockly.addChangeListener(renderContent);
         //});
-
-        $scope.newWorkspace = function() {
-            $scope.inject();
-            Blockly.Blocks.CreateMainBlock();
-        };
-
-        $scope.inject = function() {
-            Blockly.inject(document.getElementById('blocklyDiv'),
-                {
-                    path: '../',
-                    toolbox: document.getElementById('toolbox')
-                }
-            );
-            Blockly.addChangeListener(renderContent);
-        };
 
 		// Render contents with pretty print.
 		var renderContent = function () {
@@ -104,9 +99,6 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
          };
 */
         $scope.create = function () {
-            //var xml = 'xml';
-           // var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-            $scope.xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
 
             var title = 'New CAKE Project';
 
@@ -118,7 +110,7 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
                 $location.path('projects/' + response._id);
 
                 $scope.title = '';
-                $scope.content = {};
+                $scope.content = '';
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -142,7 +134,7 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
 
         $scope.update = function () {
             var project = $scope.project;
-            project.content = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+            project.content = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace).outerHTML.toString();
 
             project.$update(function () {
                 $location.path('projects/' + project._id);
@@ -156,20 +148,33 @@ angular.module('ide').controller('IdeController', ['$scope', '$document', '$stat
         };
 
         $scope.findOne = function () {
-            $scope.inject();
             //$scope.project = Projects.get({
             //    projectId: $stateParams.projectId
             //});
 
-            Projects.get({
+            $scope.project = Projects.get({
                 projectId: $stateParams.projectId
             }).$promise.then(function (project) {
+                    //Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content));
 
-                    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content).childNodes[0])
+                    Blockly.mainWorkspace.clear();
+                    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content).childNodes[0]);
                     console.log('project!!!!')
                 }, function (errResponse) {
                     //fail
                 });
+
+            //Projects.get({
+            //    projectId: $stateParams.projectId
+            //}).$promise.then(function (project) {
+            //        //Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content));
+            //
+            //        Blockly.mainWorkspace.clear();
+            //        Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, jQuery.parseXML(project.content).childNodes[0])
+            //        console.log('project!!!!')
+            //    }, function (errResponse) {
+            //        //fail
+            //    });
 
         };
 	}
